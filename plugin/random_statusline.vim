@@ -28,8 +28,8 @@ let s:colors = get(g:, 'random_statusline_colors', s:default_colors)
 function! s:SetColors()
   call srand(localtime())
   let s:idx = rand() % len(s:colors)
-  execute 'highlight StatusLine guibg=' . s:colors[s:idx][0] . ' guifg=#e8eef7'
-  execute 'highlight StatusLineNC guibg=' . s:colors[s:idx][1] . ' guifg=#cbd5e1'
+  execute 'highlight StatusLine gui=NONE guibg=' . s:colors[s:idx][0] . ' guifg=#e8eef7'
+  execute 'highlight StatusLineNC gui=NONE guibg=' . s:colors[s:idx][1] . ' guifg=#cbd5e1'
 endfunction
 
 " colorscheme 切换后重新设置
