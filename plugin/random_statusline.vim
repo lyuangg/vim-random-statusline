@@ -28,12 +28,15 @@ let s:colors = get(g:, 'random_statusline_colors', s:default_colors)
 function! s:SetColors()
   call srand(localtime())
   let s:idx = rand() % len(s:colors)
-  execute 'highlight StatusLine gui=NONE guibg=' . s:colors[s:idx][0] . ' guifg=#e8eef7'
-  execute 'highlight StatusLineNC gui=NONE guibg=' . s:colors[s:idx][1] . ' guifg=#cbd5e1'
+  execute 'highlight StatusLine gui=NONE cterm=NONE guibg=' . s:colors[s:idx][0] . ' guifg=#e8eef7'
+  execute 'highlight StatusLineNC gui=NONE cterm=NONE guibg=' . s:colors[s:idx][1] . ' guifg=#cbd5e1'
 endfunction
 
 " colorscheme 切换后重新设置
 autocmd ColorScheme * call s:SetColors()
+
+" Vim 启动完成后最终设置（确保在所有插件和 colorscheme 之后）
+autocmd VimEnter * call s:SetColors()
 
 " 首次加载执行
 call s:SetColors()
